@@ -2,6 +2,8 @@ package com.aluracursos.convertidormoneda.modelos;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder; // Para formatear el JSON con PrettyPrinting
+import io.github.cdimascio.dotenv.Dotenv;
+
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -9,9 +11,14 @@ import java.net.http.HttpResponse;
 
 public class ApiService {
     // Constante privada para la clave de la API
-    private static final String API_KEY = "3e306de0259b45a024f216e9";
+  //  private static final String API_KEY = "3e306de0259b45a024f216e9";
     // Constante privada para la URL base de la API
-    private static final String BASE_URL = "https://v6.exchangerate-api.com/v6/" + API_KEY + "/latest/USD";
+  //  private static final String BASE_URL = "https://v6.exchangerate-api.com/v6/" + API_KEY + "/latest/USD";
+
+    Dotenv dotenv = Dotenv.load();
+    String API_KEY = dotenv.get("API_KEY");
+    String BASE_URL = "https://v6.exchangerate-api.com/v6/" + API_KEY + "/latest/USD";
+
 
     // Método para obtener los datos de la API
     public ApiResponse obtenerDatosAPI() {
